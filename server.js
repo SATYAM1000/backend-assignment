@@ -11,7 +11,7 @@ const httpServer = createServer(app);
 const port = 5000;
 const io = new Server(httpServer, {
 	cors: {
-		origin: "http://localhost:5173",
+		origin: "https://frontend-assignment-taupe.vercel.app/",
 		methods: ["GET", "POST"],
 		credentials: true,
 	},
