@@ -6,17 +6,13 @@ import cors from "cors";
 const app = express();
 
 app.use(express.json());
-app.use(cors({
-  origin: "https://frontend-assignment-taupe.vercel.app/",
-  methods: ["GET", "POST"],
-  credentials: true,
-}));
+
 
 const httpServer = createServer(app);
 const port = 5000;
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://frontend-assignment-taupe.vercel.app/",
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
