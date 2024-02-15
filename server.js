@@ -1,27 +1,27 @@
-/** @format */
-
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
+
 const app = express();
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', 'https://frontend-assignment-taupe.vercel.app/');
-	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-	res.header('Access-Control-Allow-Headers', 'Content-Type');
-	next();
-  });
+
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://frontend-assignment-taupe.vercel.app/",
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
+
 const httpServer = createServer(app);
 const port = 5000;
 const io = new Server(httpServer, {
-	cors: {
-		origin: "https://frontend-assignment-taupe.vercel.app/",
-		methods: ["GET", "POST"],
-		credentials: true,
-	},
+  cors: {
+    origin: "https://frontend-assignment-taupe.vercel.app/",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
 });
+
 app.get("/", (req, res) => {
 	res.send("Hello from server!");
 });
